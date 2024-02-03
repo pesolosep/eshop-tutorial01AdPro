@@ -19,11 +19,27 @@ public class ProductRepository {
         return productData.iterator();
     }
     public void delete(String productId) {
+        Product product = this.findById(productId);
+        productData.remove(product);
+    }
+
+    public Product findById(String productId){
+        Product foundProduct = null;
         for(Product product:productData){
             if(productId.equals(product.getProductId())){
-                productData.remove(product);
+                foundProduct = product;
+
                 break;
             }
         }
+        return foundProduct;
+    }
+
+    public Product edit(String productId, Product updatedproduct){
+        updatedproduct.setProductId(productId);
+        Product product = this.findById(productId);
+        int index = productData.indexOf(product);
+        productData.set(index, updatedproduct);
+        return product;
     }
 }

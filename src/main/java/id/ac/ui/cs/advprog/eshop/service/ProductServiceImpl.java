@@ -24,6 +24,17 @@ public class ProductServiceImpl implements ProductService {
     public void delete(String productId) {
         productRepository.delete(productId);
     }
+
+    @Override
+    public Product findById(String productId) {
+        return productRepository.findById(productId);
+    }
+
+    @Override
+    public Product edit(String productId, Product product) {
+        return productRepository.edit(productId, product);
+    }
+
     @Override
     public List<Product> findAll() {
         Iterator<Product> productIterator= productRepository.findAll();
@@ -31,4 +42,6 @@ public class ProductServiceImpl implements ProductService {
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
     }
+
+
 }
