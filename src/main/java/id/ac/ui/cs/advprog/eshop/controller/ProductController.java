@@ -23,6 +23,19 @@ public class ProductController {
         return "createProduct";
     }
 
+    @GetMapping("/edit/{productId}")
+    public String createProductPage(@PathVariable String productId, Model model){
+        Product product = service.findById(productId);
+        model.addAttribute("product", product);
+        return "editProduct";
+    }
+
+    @PostMapping("/edit/{productId}")
+    public String updateProduct(@PathVariable String productId, @ModelAttribute Product product, Model model) {
+        service.edit(productId, product);
+        return "redirect:/product/list";
+    }
+
     @PostMapping("/create")
     public String createProductPost(@ModelAttribute Product product, Model model){
         service.create(product);
