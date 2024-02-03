@@ -9,12 +9,21 @@ import java.util.List;
 @Repository
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
-
+    private long nextId = 1; // Start IDs from 1
     public Product create(Product product){
+        product.setProductId(String.valueOf(nextId++));
         productData.add(product);
         return product;
     }
     public Iterator<Product> findAll(){
         return productData.iterator();
+    }
+    public void delete(String productId) {
+        for(Product product:productData){
+            if(productId.equals(product.getProductId())){
+                productData.remove(product);
+                break;
+            }
+        }
     }
 }
