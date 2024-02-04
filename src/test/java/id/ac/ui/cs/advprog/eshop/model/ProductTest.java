@@ -20,11 +20,11 @@ public class ProductTest {
     void testGetProduct(){
         assertEquals("idgamingkepanjanganlol", this.product.getProductId());
     }
-
+    @Test
     void testGetProductName(){
         assertEquals("allin02", this.product.getProductName());
     }
-
+    @Test
     void testGetProductQuantity(){
         assertEquals(100, this.product.getProductQuantity());
     }
